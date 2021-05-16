@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -25,7 +26,7 @@ public class TwoSum {
      * Input: nums = [3,3], target = 6
      * Output: [0,1]
      */
-    public int[] twoSum(int[] nums, int target) {
+    public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> numToIdx = new HashMap<>();
         int[] res = new int[2];
         for (int i = 0; i < nums.length; i++) {
@@ -37,6 +38,24 @@ public class TwoSum {
             }
             numToIdx.put(nums[i], i);
         }
-        throw new NoSuchElementException("No pair of values sum equals target.");
+
+        // The better way is to throw exception since question says have exactly one solution,
+        // but Leetcode doesn't accept the "exception way", so return initial array as [0, 0].
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = new int[] {2,7,11,15};
+        // Expects the result as [0, 1].
+        System.out.println(Arrays.toString(TwoSum.twoSum(arr1, /* target= */ 9)));
+
+        // Expects the result as [1, 2].
+        int[] arr2 = new int[] {3,2,4};
+        System.out.println(Arrays.toString(TwoSum.twoSum(arr2, /* target= */ 6)));
+
+        // Expects the result as [0, 1].
+        int[] arr3 = new int[] {3,3};
+        System.out.println(Arrays.toString(TwoSum.twoSum(arr3, /* target= */ 6)));
+
     }
 }
